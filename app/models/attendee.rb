@@ -1,6 +1,6 @@
 class Attendee < ActiveRecord::Base
-  include Slugifiable::InstanceMethods
-  extend Slugifiable::ClassMethods
+  #include Slugifiable::InstanceMethods
+  #extend Slugifiable::ClassMethods
 
   validates :name, presence: true
   validates :email, presence: true

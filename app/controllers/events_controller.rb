@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
   get '/events' do
     if logged_in?
-      @events = Event.all
+      events = Event.all
+      @public_events = events.select{|event| event.public = true}
       erb :'events/index'
     else
       redirect to '/login'
@@ -61,12 +62,12 @@ class EventsController < ApplicationController
 
   patch '/events/:id' do
     if logged_in?
-      if params[:content] == ""
+      if params[:name] == "" || params[:event_type] == "" || params[:description] == ""
         redirect to "/events/#{params[:id]}/edit"
       else
         @event = Event.find_by_id(params[:id])
         if @event && @event.creator == current_user
-          if @event.update(content: params[:content])
+          if @event.update(name: params[:name], description: params[:description])
             redirect to "/events/#{@event.id}"
           else
             redirect to "/events/#{@event.id}/edit"

@@ -1,9 +1,14 @@
 <h2> <%= @event.name %> </h2>
+<h3>Created By: <a href="/users/<%= @event.creator.id %>"> <%= @event.creator.name %> </a></h3>
 <p>
 <% @event.event_types.each do |event_type| %>
   | <a href="/event_types/<%= event_type.slug %>"><%= event_type.name %> </a>
 <% end %>
  |
+ <br></br>
+ <%= @event.description %>
 </p>
-<h3>Created By: <a href="/users/<%= @event.creator.id %>"> <%= @event.creator.name %> </a></h3>
-<br>
+<form action="/events/<%= @event.id %>" method="POST">
+  <input type="checkbox" name="attending"> Attending </p><br>
+  <input type="submit" value="Submit">
+</form>

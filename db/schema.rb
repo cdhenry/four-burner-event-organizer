@@ -10,19 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180322165746) do
-
-  create_table "attendee_events", force: :cascade do |t|
-    t.string "attendee_id"
-    t.string "event_id"
-  end
-
-  create_table "attendees", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.integer "creator_id"
-  end
+ActiveRecord::Schema.define(version: 20180321203902) do
 
   create_table "event_event_types", force: :cascade do |t|
     t.string "event_id"
@@ -30,13 +18,25 @@ ActiveRecord::Schema.define(version: 20180322165746) do
   end
 
   create_table "event_types", force: :cascade do |t|
-    t.string "type"
+    t.string "name"
   end
 
   create_table "events", force: :cascade do |t|
+    t.integer "creator_id"
     t.string "name"
     t.string "description"
-    t.integer "creator_id"
+    t.index ["creator_id"], name: "index_events_on_creator_id"
+  end
+
+  create_table "user_events", force: :cascade do |t|
+    t.string "user_id"
+    t.string "event_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
   end
 
 end

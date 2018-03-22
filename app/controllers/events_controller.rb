@@ -24,7 +24,7 @@ class EventsController < ApplicationController
         @event = current_user.events_created.build(name: params[:name], description: params[:description])
         @event.event_type_ids = params[:event_types]
         if !params["event_type"]["name"].empty?
-          @event.event_type = EventType.create(name: params["event_type"]["name"])
+          @event.event_types << EventType.create(name: params["event_type"]["name"])
         end
         if @event.save
           redirect to "/events/#{@event.id}"

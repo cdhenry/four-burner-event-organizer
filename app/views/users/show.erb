@@ -1,12 +1,12 @@
-<p>Events You've Created:</p>
+<h3>Events Created:</h3>
 <ul>
   <%@user.events_created.each do |event|%>
-    <li><%=event.name%></li>
+    <li><a href="/event_types/<%= event.id %>"><%=event.name%></a></li>
   <%end%>
 </ul>
-<p>Events You're Attending:</p>
+<h3>Events Attending:</h3>
 <ul>
   <%@user.events.each do |event|%>
-    <li><%=event.name%></li>
+    <li><a href="/event_types/<%= event.id %>"><%=event.name%></a></li>
   <%end%>
 </ul>

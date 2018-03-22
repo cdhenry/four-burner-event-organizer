@@ -35,7 +35,7 @@ class EventsController < ApplicationController
 
   get '/events/:id' do
     if logged_in?
-      @event = event.find_by_id(params[:id])
+      @event = Event.find_by_id(params[:id])
       erb :'events/show'
     else
       redirect to '/login'

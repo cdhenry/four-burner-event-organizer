@@ -5,7 +5,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
-use AttendeesController
+use UsersController
 use EventsController
 use EventTypesController
 run ApplicationController

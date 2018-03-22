@@ -10,8 +10,8 @@
       <% if logged_in? %>
         <p>
           <a href="/events/new"> Create Event </a>  |
-          <a href="/events/show"> See All Events </a> |
-          <a href="/users/show"> See All Your Events </a> |
+          <a href="/events/:id"> See All Events </a> |
+          <a href="/users/:id"> See All Your Events </a> |
           <a href="/logout"> Log Out </a> |
         </p>
         <p>Welcome, <%=current_user.name %></p>

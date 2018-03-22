@@ -1,17 +1,17 @@
-class AttendeesController < ApplicationController
-  get '/attendees' do
-    @attendee = Attendee.all
-    erb:'attendees/index'
+class UsersController < ApplicationController
+  get '/users' do
+    @users = User.all
+    erb:'users/index'
   end
 
-  get '/attendees/:slug' do
-    @user = Attendee.find_by_slug(params[:slug])
-    erb :'attendees/show'
+  get '/users/:id' do
+    @user = User.find_by_slug(params[:id])
+    erb :'users/show'
   end
 
   get '/signup' do
     if !logged_in?
-      erb :'attendees/new', locals: {message: "Please sign up before you sign in"}
+      erb :'users/new', locals: {message: "Please sign up before you sign in"}
     else
       redirect to '/events'
     end
@@ -21,7 +21,7 @@ class AttendeesController < ApplicationController
     if params[:name] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
     else
-      @user = Attendee.new(:name => params[:name], :email => params[:email], :password => params[:password])
+      @user = User.new(:name => params[:name], :email => params[:email], :password => params[:password])
       @user.save
       session[:user_id] = @user.id
       redirect to '/events'
@@ -37,7 +37,7 @@ class AttendeesController < ApplicationController
   end
 
   post '/login' do
-    user = Attendee.find_by(:email => params[:email])
+    user = User.find_by(:email => params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect "/events"

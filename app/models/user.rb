@@ -1,9 +1,4 @@
-require_relative './concerns/slugifiable.rb'
-
-class Attendee < ActiveRecord::Base
-  include Slugifiable::InstanceMethods
-  extend Slugifiable::ClassMethods
-
+class User < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true
   validates :password, presence: true
@@ -11,7 +6,7 @@ class Attendee < ActiveRecord::Base
   has_secure_password
 
   has_many :events_created, foreign_key: :creator_id, class_name: "Event"
-  has_many :attendee_events
-  has_many :events, through: :attendee_events
+  has_many :user_events
+  has_many :events, through: :user_events
   has_many :event_types, through: :events
 end

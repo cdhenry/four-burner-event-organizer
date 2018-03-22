@@ -1,0 +1,12 @@
+<p>Events You've Created:</p>
+<ul>
+  <%@user.events_created.each do |event|%>
+    <li><%=event.name%></li>
+  <%end%>
+</ul>
+<p>Events You're Attending:</p>
+<ul>
+  <%@user.events.each do |event|%>
+    <li><%=event.name%></li>
+  <%end%>
+</ul>

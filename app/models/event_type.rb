@@ -2,7 +2,7 @@ class EventType < ActiveRecord::Base
   validates :name, presence: true
 
   has_many :event_event_types
-  has_many :events, through: :events_event_types
+  has_many :events, through: :event_event_types
   has_many :users, through: :events
 
   def slug

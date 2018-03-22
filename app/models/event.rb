@@ -6,5 +6,5 @@ class Event < ActiveRecord::Base
   has_many :user_events
   has_many :event_event_types
   has_many :users, :through => :user_events
-  has_many :event_types, :through => :events_event_types
+  has_many :event_types, :through => :event_event_types
 end

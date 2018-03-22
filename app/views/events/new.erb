@@ -1,0 +1,21 @@
+<h1>Add a New Event</h1>
+
+<form action="/events" method="POST">
+  <label> Event Name </label>
+  <input type="text" name="name">
+  <br>
+  <label> Event Description </label>
+  <textarea type="text" name="description"> </textarea>
+  <br>
+  <label> Choose an Event Type </label>
+  <% EventType.all.each do |event_type| %>
+    <input id="<%= event_type.name %>" type="checkbox" name="event_types[]" value="<%= event_type.id %>">
+  <% end %>
+  <br>
+  <label> Or Create a New Event Type </label>
+  <br>
+  <label> Event Type: </label>
+  <input type="text" name="event_type[name]" id="event_type_name"></input>
+  <br>
+  <input type="submit" value="Create">
+</form>

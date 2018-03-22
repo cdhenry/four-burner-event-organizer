@@ -1,0 +1,24 @@
+<h1>Edit <%= @event.name %></h1>
+
+<form action="/events/<%= @event.id %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <label for="name">Name</label>
+  <input type="text" name="event[name]" id="name" value="<%= @event.name %>">
+  <br>
+  <label> Event Description </label>
+  <textarea type="text" name="description" value="<%= @event.description %>"> </textarea></br>
+  <br>
+  <% EventType.all.each do |event_type| %>
+    <label><%= event_type.name %></label>
+    <input type="checkbox" name="event_types[]" value="<%= event_type.id %>" id="<%= event_type.name %>" <%='checked' if @event.event_type.include?(event_type) %>>
+  <% end %>
+  <br>
+  <br>
+  <label> Or Create a New Event Type </label>
+  <br>
+  <label> Event Type: </label>
+  <input type="text" name="event_type[name]" id="event_type_name"></input>
+  <br>
+
+  <input type="submit" value="Save">
+</form>

@@ -21,7 +21,11 @@ class EventsController < ApplicationController
       if params[:description] == "" || params[:name] == ""
         redirect to "/events/new"
       else
-        @event = current_user.events.build(content: params[:content])
+        @event = current_user.events_created.build(name: params[:name], description: params[:description])
+        @event.event_type_ids = params[:event_types]
+        if !params["event_type"]["name"].empty?
+          @event.event_type = EventType.create(name: params["event_type"]["name"])
+        end
         if @event.save
           redirect to "/events/#{@event.id}"
         else

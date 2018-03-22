@@ -1,4 +1,9 @@
 class AttendeesController < ApplicationController
+  get '/attendees' do
+    @attendee = Attendee.all
+    erb:'attendees/index'
+  end
+
   get '/attendees/:slug' do
     @user = Attendee.find_by_slug(params[:slug])
     erb :'attendees/show'
@@ -32,7 +37,7 @@ class AttendeesController < ApplicationController
   end
 
   post '/login' do
-    user = Attendee.find_by(:name => params[:name])
+    user = Attendee.find_by(:email => params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect "/events"

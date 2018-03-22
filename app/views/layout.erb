@@ -17,8 +17,10 @@
         <p>Welcome, <%=current_user.name %></p>
 
       <% else %>
-        <a href="/signup"> Sign Up </a>
-        <a href="/login"> Sign In </a>
+        <p>
+          <a href="/signup"> Sign Up </a> |
+          <a href="/login"> Log In </a>
+        </p>
       <%end %>
 
     </nav>

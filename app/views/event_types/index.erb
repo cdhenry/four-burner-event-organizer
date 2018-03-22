@@ -1,0 +1,6 @@
+<h1>Event Types</h1>
+<ul>
+  <% @event_types.each do |event_type| %>
+    <li><h3><a href="/event_types/<%=event_type.slug%>"><%= event_type.name %></a></h3></li>
+  <% end %>
+</ul>

@@ -1,12 +1,12 @@
 class AttendeesController < ApplicationController
   get '/attendees/:slug' do
-    @user = User.find_by_slug(params[:slug])
+    @user = Attendee.find_by_slug(params[:slug])
     erb :'attendees/show'
   end
 
   get '/signup' do
     if !logged_in?
-      erb :'attendees/create_user', locals: {message: "Please sign up before you sign in"}
+      erb :'attendees/new', locals: {message: "Please sign up before you sign in"}
     else
       redirect to '/events'
     end

@@ -1,8 +1,7 @@
 class EventsController < ApplicationController
   get '/events' do
     if logged_in?
-      events = Event.all
-      @public_events = events.select{|event| event.public = true}
+      @public_events = Event.all.select{|event| event.public = true}
       erb :'events/index'
     else
       redirect to '/login'
@@ -23,6 +22,7 @@ class EventsController < ApplicationController
         redirect to "/events/new"
       else
         @event = current_user.events_created.build(name: params[:name], description: params[:description])
+        @event.attending? = true
         @event.event_type_ids = params[:event_types]
         if !params["event_type"]["name"].empty?
           @event.event_types << EventType.create(name: params["event_type"]["name"])

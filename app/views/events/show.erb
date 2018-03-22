@@ -9,6 +9,6 @@
  <%= @event.description %>
 </p>
 <form action="/events/<%= @event.id %>" method="POST">
-  <input type="checkbox" name="attending"> Attending </p><br>
+  <input type="checkbox" name="attending" <%='checked' if @event.attending?%>> Attending </p><br>
   <input type="submit" value="Submit">
 </form>

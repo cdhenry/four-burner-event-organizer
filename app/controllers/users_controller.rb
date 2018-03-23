@@ -1,9 +1,4 @@
 class UsersController < ApplicationController
-  get '/users' do
-    @users = User.all
-    erb:'users/index'
-  end
-
   get '/users/:id' do
     @user = User.find_by_id(params[:id])
     erb :'users/show'
@@ -11,7 +6,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if !logged_in?
-      erb :'users/new', locals: {message: "Please sign up before you sign in"}
+      erb :'users/signup'
     else
       redirect to '/events'
     end
@@ -23,7 +18,7 @@ class UsersController < ApplicationController
     elsif params[:name] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
     else
-      @user = User.new(:name => params[:name], :email => params[:email], :password => params[:password])
+      @user = User.new(name: params[:name], email: params[:email], password: params[:password])
       create_four_burners(@user)
       @user.save
       session[:user_id] = @user.id
@@ -36,15 +31,15 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'users/login'
     else
-      redirect '/events'
+      redirect to '/events'
     end
   end
 
   post '/login' do
-    user = User.find_by(:email => params[:email])
+    user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/events"
+      redirect to "/events"
     else
       redirect to '/signup'
     end

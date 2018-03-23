@@ -7,6 +7,5 @@ end
 use Rack::MethodOverride
 use UsersController
 use EventsController
-#use EventTypesController
 use BurnersController
 run ApplicationController

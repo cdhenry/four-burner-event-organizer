@@ -1,12 +1,12 @@
-<h3>Events Created:</h3>
+<p> Here are your events, <%= @user.name %>
 <ul>
-  <%@user.events_created.each do |event|%>
-    <li><a href="/events/<%= event.id %>/edit"><%=event.name%></a></li>
-  <%end%>
+  <% @user.events.each do |event| %>
+    <li><a href="/events/<%= event.id %>"><%= event.name %> </a></li>
+  <% end %>
 </ul>
-<h3>Events Attending:</h3>
+
 <ul>
-  <%@user.events.each do |event|%>
-    <li><a href="/events/<%= event.id %>"><%=event.name%></a></li>
-  <%end%>
+  <% @user.burners.each do |burner| %>
+    <li><a href="/burners/<%= burner.slug %>"><%= burner.name %> </a></li>
+  <% end %>
 </ul>

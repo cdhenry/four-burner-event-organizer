@@ -1,10 +1,11 @@
-<h1> <%= @event.name %> </h1>
+<h2> <%= @event.name %> </h2>
+<h3> <%= @event.description %> </h3> <br>
 
-<a href="/users/<%= @event.user.id %>"> <%= @event.user.name %> </a>
+<p>Burner(s) <% @event.burners.each do |burner| %>
+  | <a href="/burners/<%= burner.slug %>"><%= burner.name %> </a>
+<% end %> |</p><br>
 
-<% @event.burners.each do |burner| %>
-  <a href="/burners/<%= burner.slug %>"><%= burner.name %> </a>
-<% end %>
+<p> Duration: </p>
 
 <form method="post" action="/events/<%=@event.id%>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">

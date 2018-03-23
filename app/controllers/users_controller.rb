@@ -19,7 +19,6 @@ class UsersController < ApplicationController
       redirect to '/signup'
     else
       @user = User.new(name: params[:name], email: params[:email], password: params[:password])
-      create_four_burners(@user)
       @user.save
       session[:user_id] = @user.id
       redirect to '/events'

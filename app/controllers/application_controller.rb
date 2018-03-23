@@ -21,12 +21,5 @@ class ApplicationController < Sinatra::Base
     def current_user
       @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
-
-    def create_four_burners(user)
-      user.burners << Burner.create(name: "Family")
-      user.burners << Burner.create(name: "Friends")
-      user.burners << Burner.create(name: "Work")
-      user.burners << Burner.create(name: "Health")
-    end
   end
 end

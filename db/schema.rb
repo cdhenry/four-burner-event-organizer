@@ -10,38 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323150612) do
+ActiveRecord::Schema.define(version: 20180323173008) do
 
   create_table "burners", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_burners_on_user_id"
   end
 
-  create_table "event_event_types", force: :cascade do |t|
+  create_table "event_burners", force: :cascade do |t|
     t.integer "event_id"
-    t.integer "event_type_id"
-    t.index ["event_id"], name: "index_event_event_types_on_event_id"
-    t.index ["event_type_id"], name: "index_event_event_types_on_event_type_id"
-  end
-
-  create_table "event_types", force: :cascade do |t|
-    t.string "name"
+    t.integer "burner_id"
+    t.index ["burner_id"], name: "index_event_burners_on_burner_id"
+    t.index ["event_id"], name: "index_event_burners_on_event_id"
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer "creator_id"
+    t.integer "user_id"
     t.string "name"
     t.string "description"
-    t.boolean "public"
-    t.index ["creator_id"], name: "index_events_on_creator_id"
-  end
-
-  create_table "user_events", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "event_id"
-    t.index ["event_id"], name: "index_user_events_on_event_id"
-    t.index ["user_id"], name: "index_user_events_on_user_id"
+    t.datetime "date_and_time"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -11,11 +11,10 @@
       <p>
         <a href="/events/new"> Create Event </a>  |
         <a href="/events"> All Events </a> |
-        <a href="/users/<%=session[:user_id]%>"> Your Events </a> |
-        <a href="/users/<%=session[:user_id]%>/burners"> Your Burners </a> |
+        <a href="/users/<%=session[:user_id]%>/burners"> Burners Breakdown </a> |
         <a href="/logout"> Log Out </a> |
       </p>
-      
+
         <p>Welcome, <%=current_user.name %></p>
 
       <% else %>

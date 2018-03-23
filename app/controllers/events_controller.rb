@@ -22,7 +22,6 @@ class EventsController < ApplicationController
         redirect to "/events/new"
       else
         @event = current_user.events_created.build(name: params[:name], description: params[:description])
-        @event.attending? = true
         @event.event_type_ids = params[:event_types]
         if !params["event_type"]["name"].empty?
           @event.event_types << EventType.create(name: params["event_type"]["name"])
@@ -76,6 +75,22 @@ class EventsController < ApplicationController
           redirect to '/events'
         end
       end
+    else
+      redirect to '/login'
+    end
+  end
+
+  post '/events/:id' do
+    if logged_in?
+      event = Event.find_by_id(params[:id])
+      if params[:attending] && !current_user.events.include?(event)
+        current_user.events << event
+      elsif !params[:attending]
+        if current_user.events.include?(event)
+          current_user.events.delete(event.id)
+        end
+      end
+      redirect to "/users/#{current_user.id}"
     else
       redirect to '/login'
     end

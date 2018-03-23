@@ -21,9 +21,9 @@ class EventsController < ApplicationController
       if params[:description] == "" || params[:name] == ""
         redirect to "/events/new"
       else
-        binding.pry
         @event = Event.new(name: params[:name], description: params[:description], date: params[:date], start_time: params[:start_time], end_time: params[:end_time])
-        @event.burners = params[:burners]
+        @event.burner_ids = params[:burner_ids]
+        @event.user = current_user
         if @event.save
           redirect to "/events/#{@event.id}"
         else
@@ -81,7 +81,7 @@ class EventsController < ApplicationController
   delete '/events/:id/delete' do
     if logged_in?
       @event = Event.find_by_id(params[:id])
-      if @event && @event.creator == current_user
+      if @event && @event.user == current_user
         @event.delete
       end
       redirect to '/events'

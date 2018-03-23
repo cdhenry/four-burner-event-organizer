@@ -23,7 +23,7 @@
 
   <label> Choose Your Event's Burner(s) </label><br>
   <% Burner.all.each do |burner| %>
-    <input type="checkbox" name="burners[]" value="<%= burner.id %>" id="<%= burner.name %>"> <%=burner.name%></input>
+    <input type="checkbox" name="burner_ids[]" value="<%= burner.id %>" id="<%= burner.name %>"> <%=burner.name%></input>
   <% end %><br><br>
 
   <input type="submit" value="Create">

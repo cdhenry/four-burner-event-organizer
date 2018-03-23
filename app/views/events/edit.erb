@@ -21,9 +21,9 @@
       <td><input id="time" type="time"></td>
       <td><input id="time" type="time"></td>
     </tr>
-  </table>
+  </table><br><br>
 
-  <label> Choose a Burner </label><br>
+  <label> Choose Your Event's Burner(s)  </label><br>
   <% Burner.all.each do |burner| %>
     <input type="checkbox" name="burners[]" value="<%= burner.id %>" id="<%= burner.name %>" <%='checked' if @event.burners.include?(burner) %>><%=burner.name%></input>
   <% end %><br><br>

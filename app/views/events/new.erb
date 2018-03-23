@@ -16,12 +16,12 @@
       <th>Time Finish</th>
     </tr>
     <tr>
-      <td><input id="time" type="time" value="<%=Time.now.hour%>:<%=Time.now.min%>"></td>
-      <td><input id="time" type="time" value="<%=Time.now.hour < 23 ? Time.now.hour + 1 : Time.now.hour %>:<%=Time.now.min%>"></td>
+      <td><input id="time" type="time" value="<%=Time.now.localtime.hour%>:<%=Time.now.localtime.min%>"></td>
+      <td><input id="time" type="time" value="<%=Time.now.localtime.hour < 23 ? Time.now.localtime.hour + 1 : Time.now.localtime.hour %>:<%=Time.now.localtime.min%>"></td>
     </tr>
-  </table>
+  </table><br><br>
 
-  <label> Choose a Burner </label><br>
+  <label> Choose Your Event's Burner(s) </label><br>
   <% Burner.all.each do |burner| %>
     <input type="checkbox" name="burners[]" value="<%= burner.id %>" id="<%= burner.name %>"> <%=burner.name%></input>
   <% end %><br><br>

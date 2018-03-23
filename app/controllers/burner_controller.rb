@@ -1,4 +1,13 @@
-class EventTypesController < ApplicationController
+class BurnersController < ApplicationController
+  get '/users/:id/burners' do
+    binding.pry
+    if params[:id] == session[:user_id]
+      erb :"users/#{curent_user.id}/burners"
+    else
+      redirect to '/login'
+    end
+  end
+
   get '/burners' do
     @burners = Burner.all
     erb :'burners/index'

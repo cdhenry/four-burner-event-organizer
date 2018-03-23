@@ -1,0 +1,9 @@
+<h1>Burners</h1>
+<ul><% current_user.burners.each do |burner| %>
+  <li><h3><a href="users/<%=current_user.id%>/burners/<%=burner.slug%>"><%= burner.name %></a></h3></li>
+  <ul><% burner.events.each do |event| %>
+    <li><h4><a href="/events/<%event.id%>"><%=event.name%></a></h4></li>
+    <% end %>
+  </ul>
+  <% end %>
+</ul>

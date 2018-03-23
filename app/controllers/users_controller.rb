@@ -18,15 +18,20 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if params[:name] == "" || params[:email] == "" || params[:password] == ""
+    if User.all.find_by(email: params[:email])
+      redirect to '/login'
+    elsif params[:name] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
     else
       @user = User.new(:name => params[:name], :email => params[:email], :password => params[:password])
+      create_four_burners(@user)
       @user.save
+      binding.pry
       session[:user_id] = @user.id
       redirect to '/events'
     end
   end
+
 
   get '/login' do
     if !logged_in?

@@ -1,13 +1,11 @@
-<h1><center><%=@burner.type%></center></h1>
-<table style="width:100%">
-  <tr>
-    <th><h2>Events</h2></th>
-    <th><h2>Created By</h2></th>
-  </tr>
-  <%@burner.events.each do |event|%>
-    <tr>
-      <td><a href="/events/<%=event.id%>"><%=event.name%></a></td>
-      <td><a href="/attendees/<%=event.creator.id%>"><%=event.creator.name%></a></td>
-    </tr>
-  <%end%>
-</table>
+<ul>
+  <% @burner.events.each do |event| %>
+    <li><a href="/events/<%= event.id %>"><%= event.name %> </a></li>
+  <% end %>
+</ul>
+
+<ul>
+  <% @burner.users.each do |user| %>
+    <li><a href="/users/<%= user.id %>"><%= user.name %> </a></li>
+  <% end %>
+</ul>

@@ -1,0 +1,6 @@
+<h1>Burners</h1>
+<ul>
+  <% @burners.each do |burner| %>
+    <li><h3><a href="/burners/<%=burner.id%>"><%= burner.name %></a></h3></li>
+  <% end %>
+</ul>

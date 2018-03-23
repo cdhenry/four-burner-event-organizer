@@ -1,5 +1,5 @@
 class Burner < ActiveRecord::Base
-  validates :type, presence: true
+  validates :name, presence: true
 
   belongs_to :user
   has_many :events, through: :user

@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323150725) do
+ActiveRecord::Schema.define(version: 20180323150612) do
 
   create_table "burners", force: :cascade do |t|
-    t.string "type"
+    t.string "name"
     t.integer "user_id"
     t.index ["user_id"], name: "index_burners_on_user_id"
   end
@@ -34,8 +34,6 @@ ActiveRecord::Schema.define(version: 20180323150725) do
     t.string "name"
     t.string "description"
     t.boolean "public"
-    t.integer "burner_id"
-    t.index ["burner_id"], name: "index_events_on_burner_id"
     t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 

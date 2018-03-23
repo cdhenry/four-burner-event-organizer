@@ -26,7 +26,6 @@ class UsersController < ApplicationController
       @user = User.new(:name => params[:name], :email => params[:email], :password => params[:password])
       create_four_burners(@user)
       @user.save
-      binding.pry
       session[:user_id] = @user.id
       redirect to '/events'
     end

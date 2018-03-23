@@ -21,8 +21,9 @@ class EventsController < ApplicationController
       if params[:description] == "" || params[:name] == ""
         redirect to "/events/new"
       else
-        @event = Event.new(name: params[:name], description: params[:description], date_and_time: params[:date_and_time])
-        @event.burner_ids = params[:burners]
+        binding.pry
+        @event = Event.new(name: params[:name], description: params[:description], date: params[:date], start_time: params[:start_time], end_time: params[:end_time])
+        @event.burners = params[:burners]
         if @event.save
           redirect to "/events/#{@event.id}"
         else

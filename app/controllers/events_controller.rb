@@ -21,14 +21,14 @@ class EventsController < ApplicationController
       if params[:description] == "" || params[:name] == ""
         redirect to "/events/new"
       else
-        event = Event.new(name: params[:name], description: params[:description], event_type_ids: params[:event_type_ids])
+        event = Event.new(name: params[:name], description: params[:description], event_type_ids: params[:event_type_ids], public: params[:public])
         if !params["event_type"]["name"].empty? && !EventType.find_by(name: params["event_type"]["name"])
           event.event_types << EventType.new(name: params["event_type"]["name"])
         end
         if event.save
           event.creator = current_user
           current_user.events << event
-          redirect to "/users/#{current_user}.id}"
+          redirect to "/users/#{current_user.id}"
         else
           redirect to "/events/new"
         end

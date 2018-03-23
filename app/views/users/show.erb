@@ -1,7 +1,7 @@
 <h3>Events Created:</h3>
 <ul>
   <%@user.events_created.each do |event|%>
-    <li><a href="/events/<%= event.id %>"><%=event.name%></a></li>
+    <li><a href="/events/<%= event.id %>/edit"><%=event.name%></a></li>
   <%end%>
 </ul>
 <h3>Events Attending:</h3>

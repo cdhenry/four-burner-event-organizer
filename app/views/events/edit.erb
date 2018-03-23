@@ -5,15 +5,15 @@
   <label for="name">Name</label>
   <input type="text" name="event[name]" id="name" value="<%= @event.name %>"><br>
 
-  <input type="checkbox" name="event[name]" id="name" value="Public"><input type="checkbox" name="event[name]" id="name" value="Private"><br>
+  <input type="checkbox" name="public" <%='checked' if @event.public%>>Public</input><br><br>
 
-  <label> Event Description </label>
-  <textarea type="text" name="description" value="<%= @event.description %>"> </textarea><br>
+  <label> Event Description </label><br>
+  <textarea type="text" name="description" value="<%= @event.description %>"> </textarea><br><br>
 
+  <label> Choose an Event Type </label><br>
   <% EventType.all.each do |event_type| %>
-    <label><%= event_type.name %></label>
-    <input type="checkbox" name="event_types[]" value="<%= event_type.id %>" id="<%= event_type.name %>" <%='checked' if @event.event_type.include?(event_type) %>>
-  <% end %><br>
+    <input type="checkbox" name="event_type_ids[]" value="<%= event_type.id %>" <%='checked' if @event.event_types.include?(event_type) %>><%=event_type.name%></input>
+  <% end %><br><br>
 
   <label> Or Create a New Event Type </label><br>
 

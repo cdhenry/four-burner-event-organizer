@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if !logged_in?
-      erb :'attendees/login'
+      erb :'users/login'
     else
       redirect '/events'
     end

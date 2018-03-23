@@ -2,17 +2,16 @@
 
 <form action="/events/<%= @event.id %>" method="POST">
   <input type="hidden" name="_method" value="PATCH">
+
   <label for="name">Name</label>
   <input type="text" name="event[name]" id="name" value="<%= @event.name %>"><br>
-
-  <input type="checkbox" name="public" <%='checked' if @event.public%>>Public</input><br><br>
 
   <label> Event Description </label><br>
   <textarea type="text" name="description" value="<%= @event.description %>"> </textarea><br><br>
 
   <label> Choose a Burner </label><br>
-  <% current_user.burners.each do |burner| %>
-    <input type="radio" name="burner" value="<%= burner.id %>" <%='checked' if burner.events.include?(@event) %>><%=burner.name%></input>
+  <% Burners.all.each do |burner| %>
+    <input type="checkbox" name="burners[]" value="<%= burner.id %>" id="<%= burner.name %>" <%='checked' if @event.burners.include?(burner) %>><%=burner.name%></input>
   <% end %><br><br>
 
   <input type="submit" value="Save">

@@ -4,14 +4,17 @@
   <label> Event Name </label>
   <input type="text" name="name">
   <br>
-  <label> Event Description </label>
+  <input type="radio" name="public">Public</input>
+  <input type="radio" name="private">Private</input>
+  <br><br>
+  <label> Event Description </label><br>
   <textarea type="text" name="description"> </textarea>
-  <br>
-  <label> Choose an Event Type </label>
+  <br><br>
+  <label> Choose an Event Type </label><br>
   <% EventType.all.each do |event_type| %>
-    <input id="<%= event_type.name %>" type="checkbox" name="event_types[]" value="<%= event_type.id %>">
+    <input type="checkbox" name="event_type_ids[]" value="<%= event_type.id %>"><%=event_type.name%></input>
   <% end %>
-  <br>
+  <br><br>
   <label> Or Create a New Event Type </label>
   <br>
   <label> Event Type: </label>

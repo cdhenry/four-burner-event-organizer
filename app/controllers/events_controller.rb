@@ -23,7 +23,7 @@ class EventsController < ApplicationController
       else
         @event = Event.new(name: params[:name], description: params[:description], date_and_time: params[:date_and_time])
         @event.burner_ids = params[:burners]
-        if @event.save    
+        if @event.save
           redirect to "/events/#{@event.id}"
         else
           redirect to "/events/new"

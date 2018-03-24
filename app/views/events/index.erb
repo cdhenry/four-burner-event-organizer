@@ -1,5 +1,5 @@
 <h3>Your Events</h3><br>
-<table width="400">
+<table width="600">
   <tr>
     <th><center>Friends</center></th>
     <th><center>Family</center></th>
@@ -7,7 +7,7 @@
   <tr>
     <td>
       <%if @friends.empty?%>
-        <p>You have no events with friends scheduled.</p>
+        <a href="events/new">Schedule some time with friends</a>
       <%else%>
         <% @friends.each do |event| %>
           <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>
@@ -16,7 +16,7 @@
     </td>
     <td>
       <%if @family.empty?%>
-        <p>You have no events with family scheduled.</p>
+        <a href="events/new">Schedule some time with family</a>
       <%else%>
         <% @family.each do |event| %>
           <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>
@@ -25,7 +25,7 @@
     </td>
   </tr>
 </table>
-<table width="400">
+<table width="600">
   <tr>
     <th><center>Work</center></th>
     <th><center>Health</center></th>
@@ -33,7 +33,7 @@
   <tr>
     <td>
       <%if @work.empty?%>
-        <p>You have no work events scheduled.</p>
+        <a href="events/new">Schedule some time for business</a>
       <%else%>
         <% @work.each do |event| %>
           <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>
@@ -42,7 +42,7 @@
     </td>
     <td>
       <%if @health.empty?%>
-        <p>You have no self care scheduled.</p>
+        <a href="events/new">Schedule a some time to take care of yourself</a>
       <%else%>
         <% @health.each do |event| %>
           <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>

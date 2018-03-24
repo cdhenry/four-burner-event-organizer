@@ -45,7 +45,7 @@
       <%if users_events["Health"].empty?%>
         <a href="events/new">Schedule a some time to take care of yourself</a>
       <%else%>
-        <% users_events["Work"].each do |event| %>
+        <% users_events["Health"].each do |event| %>
           <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>
         <% end %>
       <% end %>

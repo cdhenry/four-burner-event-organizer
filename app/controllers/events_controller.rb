@@ -17,7 +17,7 @@ class EventsController < ApplicationController
 
   post '/events' do
     if logged_in?
-      if params[:description] == "" || params[:name] == ""
+      if params[:description] == "" || params[:name] == "" || params[:burner_ids] = []
         redirect to "/events/new"
       else
         @event = Event.new(name: params[:name], description: params[:description], date: params[:date], duration: (params[:hours]+params[:split]).to_f)
@@ -46,7 +46,7 @@ class EventsController < ApplicationController
   get '/events/:id/edit' do
     if logged_in?
       @event = Event.find_by_id(params[:id])
-      if @event && @event.creator == current_user
+      if @event && @event.user == current_user
         erb :'events/edit'
       else
         redirect to '/events'
@@ -58,12 +58,13 @@ class EventsController < ApplicationController
 
   patch '/events/:id' do
     if logged_in?
-      if params[:name] == "" || params[:description] == "" || params[:date_and_time] == ""
+      if params[:name] == "" || params[:description] == "" || params[:hours] == "" || params[:split] == "" || params[:burner_ids] == []
         redirect to "/events/#{params[:id]}/edit"
       else
         @event = Event.find_by_id(params[:id])
         if @event && @event.user == current_user
-          if @event.update(name: params[:name], description: params[:description])
+          if @event.update(name: params[:name], description: params[:description], duration: (params[:hours]+params[:split]).to_f)
+            @event.burner_ids = params[:burner_ids]
             redirect to "/events/#{@event.id}"
           else
             redirect to "/events/#{@event.id}/edit"

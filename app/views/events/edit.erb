@@ -4,24 +4,22 @@
   <input type="hidden" name="_method" value="PATCH">
 
   <label for="name"> Name </label>
-  <input type="text" name="event[name]" id="name" value="<%= @event.name %>"><br><br>
+  <input type="text" name="name" id="name" value="<%= @event.name %>"><br><br>
 
   <label> Description </label><br>
-  <textarea type="text" name="description" value="<%= @event.description %>"> </textarea><br><br>
+  <textarea type="text" name="description"> <%= @event.description %> </textarea><br><br>
 
   <label> Date </label><br>
-  <input id="date" type="date"><br>
+  <input id="date" type="date" value="<%= @event.date %>"><br><br>
 
-  <table>
-    <tr>
-      <th>Time Start</th>
-      <th>Time Finish</th>
-    </tr>
-    <tr>
-      <td><input id="time" type="time"></td>
-      <td><input id="time" type="time"></td>
-    </tr>
-  </table><br><br>
+  <label> Duration </label><br>
+  <input type="number" name="hours" id="hours" min="0" max="24" value="<%= @event.duration.to_s.split('.').first %>"> <strong>.</strong>
+  <select name="split" id="split">
+    <option value=".0" <%='selected' if @event.duration.to_s.split('.').last == '0' %>>0</option>
+    <option value=".25" <%='selected' if @event.duration.to_s.split('.').last == '25' %>>25</option>
+    <option value=".5" <%='selected' if @event.duration.to_s.split('.').last == '5' %>>5</option>
+    <option value=".75" <%='selected' if @event.duration.to_s.split('.').last == '75' %>>75</option>
+  </select> hr(s)<br><br>
 
   <label> Choose Your Event's Burner(s)  </label><br>
   <% Burner.all.each do |burner| %>

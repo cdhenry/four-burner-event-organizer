@@ -6,25 +6,26 @@
   </tr>
   <tr>
     <td>
-      <%if @friends.empty?%>
+      <%if users_events["Friends"].empty?%>
         <a href="events/new">Schedule some time with friends</a>
       <%else%>
-        <% @friends.each do |event| %>
+        <% users_events["Friends"].each do |event| %>
           <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>
         <% end %>
       <% end %>
     </td>
     <td>
-      <%if @family.empty?%>
+      <%if users_events["Family"].empty?%>
         <a href="events/new">Schedule some time with family</a>
       <%else%>
-        <% @family.each do |event| %>
+        <% users_events["Family"].each do |event| %>
           <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>
         <% end %>
       <% end %>
     </td>
   </tr>
 </table>
+<br>
 <table width="600">
   <tr>
     <th><center>Work</center></th>
@@ -32,19 +33,19 @@
   </tr>
   <tr>
     <td>
-      <%if @work.empty?%>
+      <%if users_events["Work"].empty?%>
         <a href="events/new">Schedule some time for business</a>
       <%else%>
-        <% @work.each do |event| %>
+        <% users_events["Work"].each do |event| %>
           <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>
         <% end %>
       <% end %>
     </td>
     <td>
-      <%if @health.empty?%>
+      <%if users_events["Health"].empty?%>
         <a href="events/new">Schedule a some time to take care of yourself</a>
       <%else%>
-        <% @health.each do |event| %>
+        <% users_events["Work"].each do |event| %>
           <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>
         <% end %>
       <% end %>

@@ -1,11 +1,6 @@
 class EventsController < ApplicationController
   get '/events' do
     if logged_in?
-      users_events = Event.all.select {|event| event.user == current_user}
-      @friends = users_events.select{|event| event.burners.find_by(name: "Friends")}
-      @family = users_events.select{|event| event.burners.find_by(name: "Family")}
-      @work = users_events.select{|event| event.burners.find_by(name: "Work")}
-      @health = users_events.select{|event| event.burners.find_by(name: "Health")}
       erb :'events/index'
     else
       redirect to '/login'

@@ -1,11 +1,7 @@
+<h3> <%=@burner.name%> Events | <%=percent_time_with(@burner.events)%>%</h3>
 <ul>
   <% @burner.events.each do |event| %>
-    <li><a href="/events/<%= event.id %>"><%= event.name %> </a></li>
-  <% end %>
-</ul>
-
-<ul>
-  <% @burner.users.each do |user| %>
-    <li><a href="/users/<%= user.id %>"><%= user.name %> </a></li>
+    <li><a href="/events/<%= event.id %>"><%= event.name %> </a> |
+    <%= event.duration%> hrs</li>
   <% end %>
 </ul>

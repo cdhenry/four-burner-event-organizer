@@ -1,4 +1,6 @@
-<h1>Burners</h1>
-<% @burners.each do |burner| %>
-  <li><a href="/burners/<%= burner.slug %>"> <%= burner.name %></a></li>
-<% end %>
+<h3>Burners</h3><br>
+<h4>
+  <% @burners.each do |burner| %>
+    | <a href="/burners/<%= burner.slug %>"> <%= burner.name %></a>
+  <% end %> |
+</h4>

@@ -29,7 +29,7 @@ class ApplicationController < Sinatra::Base
         hours_spent += event.duration
       end
 
-      ((hours_spent / time_total) * 100).round(0)
+      ((hours_spent / time_total) * 100).round(1)
     end
 
     def time_total

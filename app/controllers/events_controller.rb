@@ -17,7 +17,7 @@ class EventsController < ApplicationController
 
   post '/events' do
     if logged_in?
-      if params[:description] == "" || params[:name] == "" || !params[:burner_ids]
+      if params[:description] == "" || params[:name] == "" || params[:hours] == "" || params[:split] == "" || !params[:burner_ids]
         redirect to "/events/new"
       else
         @event = Event.new(name: params[:name], description: params[:description].strip, date: params[:date], duration: (params[:hours]+params[:split]).to_f)
@@ -37,7 +37,11 @@ class EventsController < ApplicationController
   get '/events/:id' do
     if logged_in?
       @event = Event.find_by_id(params[:id])
-      erb :'events/show'
+      if @event && @event.user == current_user
+        erb :'events/show'
+      else
+        redirect to '/events'
+      end
     else
       redirect to '/login'
     end

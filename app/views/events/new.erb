@@ -10,21 +10,19 @@
   <label> Date </label><br>
   <input name="date" id="date" type="date" value="<%=Date.today%>"><br><br>
 
-  <table>
-    <tr>
-      <th>Time Start</th>
-      <th>Time Finish</th>
-    </tr>
-    <tr>
-      <td><input name = "start_time" id="time" type="time" value="<%=Time.now.localtime.hour%>:<%=Time.now.localtime.min%>"></td>
-      <td><input name = "end_time" id="time" type="time" value="<%=Time.now.localtime.hour < 23 ? Time.now.localtime.hour + 1 : Time.now.localtime.hour %>:<%=Time.now.localtime.min%>"></td>
-    </tr>
-  </table><br><br>
+  <label> Duration </label><br>
+  <input type="number" name="hours" id="hours" min="0" max="24"> <strong>.</strong>
+  <select name="split" id="split">
+    <option value=".0">0</option>
+    <option value=".25">25</option>
+    <option value=".5">5</option>
+    <option value=".75">75</option>
+  </select> hr(s)<br><br>
 
   <label> Choose Your Event's Burner(s) </label><br>
   <% Burner.all.each do |burner| %>
     <input type="checkbox" name="burner_ids[]" value="<%= burner.id %>" id="<%= burner.name %>"> <%=burner.name%></input>
   <% end %><br><br>
 
-  <input type="submit" value="Create">
+  <input type="submit" value="Create"><br>
 </form>

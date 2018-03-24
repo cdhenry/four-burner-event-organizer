@@ -1,5 +1,53 @@
-<h3><%=current_user.name%>'s Events</h3>
-<p>Friends</p>
-<% @users_events.each do |event| %>
-  <li> <%='<a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%>' if event.burner.find_by(name: "Friends")%></li>
-<% end %>
+<h3>Your Events</h3><br>
+<table width="400">
+  <tr>
+    <th><center>Friends</center></th>
+    <th><center>Family</center></th>
+  </tr>
+  <tr>
+    <td>
+      <%if @friends.empty?%>
+        <p>You have no events with friends scheduled.</p>
+      <%else%>
+        <% @friends.each do |event| %>
+          <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>
+        <% end %>
+      <% end %>
+    </td>
+    <td>
+      <%if @family.empty?%>
+        <p>You have no events with family scheduled.</p>
+      <%else%>
+        <% @family.each do |event| %>
+          <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+<table width="400">
+  <tr>
+    <th><center>Work</center></th>
+    <th><center>Health</center></th>
+  </tr>
+  <tr>
+    <td>
+      <%if @work.empty?%>
+        <p>You have no work events scheduled.</p>
+      <%else%>
+        <% @work.each do |event| %>
+          <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>
+        <% end %>
+      <% end %>
+    </td>
+    <td>
+      <%if @health.empty?%>
+        <p>You have no self care scheduled.</p>
+      <%else%>
+        <% @health.each do |event| %>
+          <li> <a href="/events/<%= event.id %>"> <%= event.name %> </a> | <%=event.date%></li>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+</table>

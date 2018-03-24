@@ -2,10 +2,10 @@ class EventsController < ApplicationController
   get '/events' do
     if logged_in?
       users_events = Event.all.select {|event| event.user == current_user}
-      @friends = users_events.select{|event| event.find_by(name: "Friends")}
-      @family = users_events.select{|event| event.find_by(name: "Family")}
-      @work = users_events.select{|event| event.find_by(name: "Work")}
-      @health = users_events.select{|event| event.find_by(name: "Health")}
+      @friends = users_events.select{|event| event.burners.find_by(name: "Friends")}
+      @family = users_events.select{|event| event.burners.find_by(name: "Family")}
+      @work = users_events.select{|event| event.burners.find_by(name: "Work")}
+      @health = users_events.select{|event| event.burners.find_by(name: "Health")}
       erb :'events/index'
     else
       redirect to '/login'
@@ -25,7 +25,7 @@ class EventsController < ApplicationController
       if params[:description] == "" || params[:name] == ""
         redirect to "/events/new"
       else
-        @event = Event.new(name: params[:name], description: params[:description], date: params[:date], start_time: params[:start_time], end_time: params[:end_time])
+        @event = Event.new(name: params[:name], description: params[:description], date: params[:date], duration: (params[:hours]+params[:split]).to_f)
         @event.burner_ids = params[:burner_ids]
         @event.user = current_user
         if @event.save

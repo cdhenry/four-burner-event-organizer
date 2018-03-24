@@ -28,8 +28,7 @@ ActiveRecord::Schema.define(version: 20180323173008) do
     t.string "name"
     t.string "description"
     t.string "date"
-    t.string "start_time"
-    t.string "end_time"
+    t.float "duration"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

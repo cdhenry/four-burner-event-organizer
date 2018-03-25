@@ -2,7 +2,7 @@ class BurnersController < ApplicationController
   get '/burners' do
     if logged_in?
       if current_user.burners.empty?
-        redirect to 'events'
+        redirect to '/events'
       else
         @burners = current_user.burners
         duration_array = users_events.collect do |burner, events|

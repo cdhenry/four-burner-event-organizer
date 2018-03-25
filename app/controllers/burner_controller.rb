@@ -4,7 +4,7 @@ class BurnersController < ApplicationController
       if current_user.burners.empty?
         redirect to '/events'
       else
-        @burners = current_user.burners
+        @burners = current_user.burners.uniq
         duration_array = users_events.collect do |burner, events|
           "['#{burner}', #{events.collect {|event| event.duration}.sum}]"
         end
@@ -18,9 +18,7 @@ class BurnersController < ApplicationController
 
   get '/burners/:slug' do
     if logged_in?
-      @events = current_user.events.collect do |event|
-        event if event.burners.find_by_slug(params[:slug])
-      end
+      @events = current_user.events.select {|event| event.burners.find_by_slug(params[:slug])}
       erb :'/burners/show'
     else
       redirect to '/login'

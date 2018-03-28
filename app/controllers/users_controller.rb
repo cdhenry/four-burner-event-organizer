@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       erb :'users/signup'
     else
       flash[:message] = "***Log out to sign up as a new user."
-      redirect to '/'
+      redirect to '/events'
     end
   end
 
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       @user = User.new(name: params[:name], email: params[:email].downcase, password: params[:password])
       @user.save
       session[:user_id] = @user.id
-      redirect to '/'
+      redirect to '/events'
     end
   end
 

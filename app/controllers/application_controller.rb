@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
 
     def percent_time_with(burner_group)
       hours_spent = 0.0
-      
+
       burner_group.each do |event|
         hours_spent += event.duration
       end
@@ -52,6 +52,13 @@ class ApplicationController < Sinatra::Base
       burner_hash["Health"] = events.select{|event| event.burners.find_by(name: "Health")}
 
       burner_hash
+    end
+
+    def burner_chart_data
+      percent_time_spent_array = users_events.collect do |burner, events|
+        "['#{burner}', #{events.collect {|event| event.duration}.sum}]"
+      end
+      percent_time_spent_array.join(",")
     end
   end
 end

@@ -10,13 +10,7 @@ class BurnersController < ApplicationController
         redirect to '/events'
       else
         @burners = current_user.burners.uniq
-
-        #for the google pie-chart app
-        percent_time_spent_array = users_events.collect do |burner, events|
-          "['#{burner}', #{events.collect {|event| event.duration}.sum}]"
-        end
-        @chart_breakdown = percent_time_spent_array.join(",")
-
+        @chart_breakdown = burner_chart_data
         erb :'burners/index'
       end
     else

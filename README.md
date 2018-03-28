@@ -24,14 +24,14 @@ $ shotgun
 ```
 And in your browser, go to http://localhost:9393/ to get started! To stop running this app, type ^C (Control + C).
 
-### Contributing 
+### Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/cdhenry/four-burner-event-organizer. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-### License 
+### License
 
 The gem is available as open source under the terms of the MIT License.
 
-### Code of Conduct 
+### Code of Conduct
 
 Everyone interacting in the Four-Burner-Event-Organizer's project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the code of conduct.

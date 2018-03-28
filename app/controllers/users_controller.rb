@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     elsif params[:name] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
     else
-      @user = User.new(name: params[:name], email: params[:email], password: params[:password])
+      @user = User.new(name: params[:name], email: params[:email].downcase, password: params[:password])
       @user.save
       session[:user_id] = @user.id
       redirect to '/'
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    user = User.find_by(email: params[:email])
+    user = User.find_by(email: params[:email].downcase)
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect to "/events"

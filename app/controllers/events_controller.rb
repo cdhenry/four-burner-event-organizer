@@ -1,8 +1,13 @@
+require 'rack-flash'
+
 class EventsController < ApplicationController
+  use Rack::Flash
+
   get '/events' do
     if logged_in?
       erb :'events/index'
     else
+      flash[:message] = "***Log in to view this page."
       redirect to '/login'
     end
   end
@@ -11,6 +16,7 @@ class EventsController < ApplicationController
     if logged_in?
       erb :'events/new'
     else
+      flash[:message] = "***Log in to view this page."
       redirect to '/login'
     end
   end
@@ -18,6 +24,7 @@ class EventsController < ApplicationController
   post '/events' do
     if logged_in?
       if params[:description] == "" || params[:name] == "" || params[:hours] == "" || params[:split] == "" || !params[:burner_ids]
+        flash[:message] = "***All fields must be filled out."
         redirect to "/events/new"
       else
         @event = Event.new(name: params[:name], description: params[:description].strip, date: params[:date], duration: (params[:hours]+params[:split]).to_f)
@@ -26,10 +33,12 @@ class EventsController < ApplicationController
         if @event.save
           redirect to "/events/#{@event.id}"
         else
+          flash[:message] = "***All fields must be filled out."
           redirect to "/events/new"
         end
       end
     else
+      flash[:message] = "***Log in to view this page."
       redirect to '/login'
     end
   end
@@ -43,6 +52,7 @@ class EventsController < ApplicationController
         redirect to '/events'
       end
     else
+      flash[:message] = "***Log in to view this page."
       redirect to '/login'
     end
   end
@@ -56,6 +66,7 @@ class EventsController < ApplicationController
         redirect to '/events'
       end
     else
+      flash[:message] = "***Log in to view this page."
       redirect to '/login'
     end
   end
@@ -63,6 +74,7 @@ class EventsController < ApplicationController
   patch '/events/:id' do
     if logged_in?
       if params[:name] == "" || params[:description] == "" || params[:hours] == "" || params[:split] == "" || !params[:burner_ids]
+        flash[:message] = "***All fields must be filled out."
         redirect to "/events/#{params[:id]}/edit"
       else
         @event = Event.find_by_id(params[:id])
@@ -78,6 +90,7 @@ class EventsController < ApplicationController
         end
       end
     else
+      flash[:message] = "***Log in to view this page."
       redirect to '/login'
     end
   end
@@ -90,6 +103,7 @@ class EventsController < ApplicationController
       end
       redirect to '/events'
     else
+      flash[:message] = "***Log in to view this page."
       redirect to '/login'
     end
   end

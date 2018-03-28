@@ -1,4 +1,9 @@
 <h2> Welcome! </h2><br>
+
+<% if flash.has?(:message) %>
+  <%= flash[:message] %><br><br>
+<% end %>
+
 <table width="600">
   <tr><th>
 <h4>The best way to understand this site might be to read a short snippet

@@ -1,5 +1,9 @@
 <h3>Edit <%= @event.name %></h3><br>
 
+<% if flash.has?(:message) %>
+  <%= flash[:message] %><br><br>
+<% end %>
+
 <form action="/events/<%= @event.id %>" method="POST">
   <input type="hidden" name="_method" value="PATCH">
 

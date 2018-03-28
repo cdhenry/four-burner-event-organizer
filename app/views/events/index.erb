@@ -1,4 +1,9 @@
 <h3>Your Events</h3><br>
+
+<% if flash.has?(:message) %>
+  <%= flash[:message] %><br><br>
+<% end %>
+
 <table style="table-layout:fixed" width="600">
   <col style="width:50%" span="1">
   <tr>
